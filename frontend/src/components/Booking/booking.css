@@ -77,3 +77,10 @@
 .booking__bottom {
     margin-top: 1rem;
 }
+
+.total h5,
+.total span {
+    color: var(--heading-color) !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+}
