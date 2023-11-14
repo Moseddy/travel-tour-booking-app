@@ -1,4 +1,6 @@
 import Booking from "../models/Booking.js"
+
+// create new booking.
 export const createBooking = async(req, res) => {
     const newBooking = new Booking(req.body);
 
@@ -13,6 +15,45 @@ export const createBooking = async(req, res) => {
         res.status(500).json({
             success: false,
             message: "We are sorry, your booking could not be created. Please try again",
+        })
+    }
+}
+
+// get single booking
+
+export const getBooking = async(req, res) => {
+    const id = req.params.id;
+
+    try {
+        const book = await Booking.findById(id);
+        res.status(200).json({
+            success: true,
+            message: "Successful",
+            data: book
+        })
+    } catch (error) {
+        res.status(404).json({
+            success: false,
+            message: "Not successful"
+        })
+    }
+}
+
+
+// get all bookings
+
+export const getAllBooking = async(req, res) => {
+    try {
+        const books = await Booking.find();
+        res.status(200).json({
+            success: true,
+            message: "Successful",
+            data: book,
+        })
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: "Could not fetch the bookings"
         })
     }
 }
